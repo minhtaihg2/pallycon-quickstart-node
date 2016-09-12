@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<MPD mediaPresentationDuration="PT1M0.095S" minBufferTime="PT2.67S" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" type="static" xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:cenc="urn:mpeg:cenc:2013" xmlns:mspr="urn:microsoft:playready">
+  <!-- Created with Bento4 mp4-dash.py, VERSION=1.7.0-612 -->
+  <Period>
+    <!-- Video -->
+    <AdaptationSet maxHeight="360" maxWidth="640" mimeType="video/mp4" minHeight="360" minWidth="640" segmentAlignment="true" startWithSAP="1">
+      <!-- MPEG Common Encryption -->
+      <ContentProtection cenc:default_KID="9898269e-a2fe-780c-9001-3c5fe41b9a56" schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"/>
+      <!-- PlayReady -->
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95">
+        <mspr:pro>hAIAAAEAAQB6AjwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AbgBpAGEAWQBtAFAANgBpAEQASABpAFEAQQBUAHgAZgA1AEIAdQBhAFYAZwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgArAGEAMwBBAFMAcQB6AHIAeQBZAGsAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAOgAvAC8AdABvAGsAeQBvAC4AcABhAGwAbAB5AGMAbwBuAC4AYwBvAG0ALwByAGkALwBsAGkAYwBlAG4AcwBlAE0AYQBuAGEAZwBlAHIALgBkAG8APAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</mspr:pro>
+      </ContentProtection>
+      <!-- Widevine -->
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAVnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADYIARIQmJgmnqL+eAyQATxf5BuaVhoMaW5rYWVudHdvcmtzIg44S0FKY2lkMTIzNDU2MioCSEQ=</cenc:pssh>
+      </ContentProtection>
+      <Representation bandwidth="671650" codecs="avc1.42E01E" frameRate="288000/12019" height="360" id="video-1" scanType="progressive" width="640">
+        <BaseURL>media-video-1.mp4</BaseURL>
+        <SegmentBase indexRange="1561-1868">
+          <Initialization range="0-1560"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <!-- Audio -->
+    <AdaptationSet lang="en" mimeType="audio/mp4" segmentAlignment="true" startWithSAP="1">
+      <!-- MPEG Common Encryption -->
+      <ContentProtection cenc:default_KID="9898269e-a2fe-780c-9001-3c5fe41b9a56" schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"/>
+      <!-- PlayReady -->
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95">
+        <mspr:pro>QgIAAAEAAQA4AjwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AbgBpAGEAWQBtAFAANgBpAEQASABpAFEAQQBUAHgAZgA1AEIAdQBhAFYAZwA9AD0APAAvAEsASQBEAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAOgAvAC8AdABvAGsAeQBvAC4AcABhAGwAbAB5AGMAbwBuAC4AYwBvAG0ALwByAGkALwBsAGkAYwBlAG4AcwBlAE0AYQBuAGEAZwBlAHIALgBkAG8APAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</mspr:pro>
+      </ContentProtection>
+      <!-- Widevine -->
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAVnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADYIARIQmJgmnqL+eAyQATxf5BuaVhoMaW5rYWVudHdvcmtzIg44S0FKY2lkMTIzNDU2MioCSEQ=</cenc:pssh>
+      </ContentProtection>
+      <Representation audioSamplingRate="22050" bandwidth="84165" codecs="mp4a.40.2" id="audio-en-mp4a">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
+        <BaseURL>media-audio-en-mp4a.mp4</BaseURL>
+        <SegmentBase indexRange="1502-1809">
+          <Initialization range="0-1501"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+</MPD>

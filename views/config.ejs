@@ -1,0 +1,52 @@
+<%
+	var sMessage = 'Input your config data and click Save button.';
+
+	// initial values
+	var configData = makeDrm.getConfig();
+
+	if(data) {
+		//var configString = JSON.stringify(data);
+		//console.log(configString);
+
+		configData = data;
+	  makeDrm.writeConfig(configData);
+	  sMessage = 'Config data updated.';
+	}
+
+	/*
+	var configData = new Object();
+	configData.SITE_ID = SITE_ID;
+	configData.TEST_USERID = TEST_USERID;
+	configData.AES256_IV = AES256_IV;
+	configData.AUTH_KEY = AUTH_KEY;
+	configData.PACK_KEY = PACK_KEY;
+	*/
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>PallyCon Quickstart Config</title>
+<meta charset="utf-8">
+</head>
+
+<body>
+<div class="container">
+	<div class="page-header">
+	<h1>PallyCon Quickstart Configuration</h1>
+	</div>
+	<form method="post">
+		<p>Site ID : <input name="SITE_ID" type="text" size="8" maxlength="16" value="<%= configData.SITE_ID %>"/>
+		<p>Test UserID : <input name="TEST_USERID" type="text" size="16" maxlength="16" value="<%= configData.TEST_USERID %>"/>
+		<p>AES256 IV : <input name="AES256_IV" type="text" size="24" maxlength="24" readonly value="<%= configData.AES256_IV %>"/>
+		<p>AUTH Key : <input name="AUTH_KEY" type="text" size="36" maxlength="36" value="<%= configData.AUTH_KEY %>"/>
+		<p>Packager Key : <input name="PACK_KEY" type="text" size="36" maxlength="36" value="<%= configData.PACK_KEY %>"/>
+		<p><input type="submit" value="Save">
+	</form>
+	<p>
+<h3><label id="message_label">test message</label></h3>
+<script>
+  document.getElementById('message_label').innerHTML = '<%= sMessage %>';
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<%
+	// initial values
+	var Site_ID			= "8KAJ";
+	var User_ID = "valid-user";
+	var Content_ID = Site_ID + "tearsofsteal1080p"; 	// hard-coded cid
+	var Order_ID = "testoid";					// hard-coded for test
+	var Stream_URL = "https://pallycon.com/pallycon-contents/tears_of_steel_1080p/stream.mpd";
+	var LA_URL = "https://tokyo.pallycon.com/ri/licenseManager.do";
+
+	if(data) {
+		console.log(JSON.stringify(data));
+
+		Site_ID = data.siteID;
+		User_ID = data.userID;
+		Content_ID = data.contentID;
+		Order_ID = data.orderID;
+		Stream_URL = data.streamURL;
+		LA_URL = data.laURL;
+	}
+
+	var drmReqData = new Object();
+	drmReqData.user_id = User_ID;
+	drmReqData.cid = Content_ID;
+	drmReqData.oid = Order_ID;
+
+  var customData = makeDrm.encrypt(JSON.stringify(drmReqData));
+	console.log(customData);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Viblast PallyCon Test</title>
+<meta charset="utf-8">
+<script src="/js/viblast.js"></script>
+<script type="text/javascript">
+	var is_chrome_or_firefox = false;
+	var agent = navigator.userAgent.toLowerCase();
+	if (agent.indexOf("chrome") != -1 || agent.indexOf("firefox") != -1)
+		is_chrome_or_firefox = true;
+
+	function start_viblast() {
+    	viblast('#player').setup({
+			key: 'N8FjNTQ3NDdhZqZhNGI5NWU5ZTI=',
+			stream: '<%= Stream_URL %>',
+			widevine: {
+				'licensing-server': '<%= LA_URL %>'
+			},
+			xhrBeforeSend: function(ev) {
+      			// filter out non-drm requests
+      			// ev.url.indexOf("//tokyo.pallycon.com/ri/licenseManager.do") < 0 is another possible check
+      			if (ev.method !== "POST") return;
+
+				if (is_chrome_or_firefox) {
+					ev.xhr.setRequestHeader('pallycon-customdata', '<%= "W" + Site_ID + customData %>');
+				}
+				else {
+					//alert("not chrome/firefox! is it IE/Edge?");
+					ev.xhr.setRequestHeader('pallycon-customdata', '<%= "P" + Site_ID + customData %>');
+				}
+				//console.log('Sending a ', ev.method, 'request to ', ev.url, 'by Viblast instance', ev.target);
+    			ev.xhr.addEventListener('load', function() {
+        			var responseText = String.fromCharCode.apply(null, new Uint8Array(ev.xhr.response)); // assumes utf8
+        			if (responseText.indexOf('errorCode') > 0) {
+        				// this alert should be properly parsed and displayed for commercial use
+          				window.alert('No Rights. Server Response ' + responseText);
+        			}
+        		});
+			},
+			autoplay: true
+		});
+    	document.getElementById('player').viblast.abr
+	}
+
+	function stop_viblast() {
+    	viblast('#player').stop();
+	}
+
+	// Scripts for playback speed control
+	var playspeed = 1.0;
+
+	function reset_playspeed() {
+		if (parseFloat(playspeed).toFixed(1) == 1.0)
+			return;
+
+		playspeed = 1.0;
+		document.getElementById("text_speed").value = parseFloat(playspeed).toFixed(1)+"X";
+		document.getElementById('player').playbackRate = playspeed;
+	}
+
+	function play_slower() {
+		if (parseFloat(playspeed).toFixed(1) > 0.5) {
+			playspeed -= 0.1;
+			document.getElementById("text_speed").value = parseFloat(playspeed).toFixed(1)+"X";
+			document.getElementById('player').playbackRate = playspeed;
+		}
+	}
+
+	function play_faster() {
+		if (parseFloat(playspeed).toFixed(1) < 2.0) {
+			playspeed += 0.1;
+			document.getElementById("text_speed").value = parseFloat(playspeed).toFixed(1)+"X";
+			document.getElementById('player').playbackRate = playspeed;
+		}
+	}
+
+</script>
+
+</head>
+
+<body>
+<div class="container">
+	<div class="page-header">
+	Viblast Player Test
+	</div>
+	<form method="post">
+		<p>Site ID : <input name="siteID" type="text" size="8" maxlength="16" value="<%= Site_ID %>"/>
+		 User ID : <input name="userID" type="text" size="16" maxlength="16" value="<%= User_ID %>"/>
+		 CID : <input name="contentID" type="text" size="32" maxlength="32" value="<%= Content_ID %>"/>
+		 Order ID : <input name="orderID" type="text" size="16" maxlength="32" value="<%= Order_ID %>"/>
+		<p>Stream URL : <input name="streamURL" type="text" size="100" value="<%= Stream_URL %>"/>
+		<p>LA URL : <input name="laURL" type="text" size="100" value="<%= LA_URL %>"/>
+		<p><input type="submit" value="Apply Settings">
+	</form>
+	<p>
+	<%= 'CustomHeader: W(or P)' + Site_ID + customData %>
+	<p>
+	<button onclick="start_viblast();">Start Player</button>
+	<button onclick="stop_viblast();">Stop Player</button>
+	<p>
+    Playback Speed (0.5 ~ 2.0) : <input id="text_speed" type="text" value="1.0X"/>
+    <button onclick="play_slower()">Slower</button>
+    <button onclick="play_faster()">Faster</button>
+    <button onclick="reset_playspeed()">Reset Speed</button>
+	<p>
+	<div>
+	<video id="player" controls width="1080"></video><p>
+	</div>
+</div>
+</body>
+</html>
