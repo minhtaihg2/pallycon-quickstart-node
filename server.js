@@ -124,6 +124,7 @@ router.post('/ContentUsageRightsInfo', function(req, res) {
 // apply the routes to our application
 app.use('/', router);
 
-var server = app.listen(80, function() {
+var port = process.env.PORT || process.env.HTTP_PORT || 8080;
+var server = app.listen(port, function() {
     console.log("Express server has started on port " + server.address().port);
 });

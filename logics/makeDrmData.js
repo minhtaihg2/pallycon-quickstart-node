@@ -5,7 +5,7 @@
     var crypto = require("crypto");
     var jsonfile = require("jsonfile");
 
-    var CONFIG_FILE = "../data/config.json";
+    var CONFIG_FILE = "./data/config.json";
 
     //const CONTENT_KEY_LENGTH_IN_BYTES = 16;
     //const COMMUNICATION_KEY_LENGTH_IN_BYTES = 32;
