@@ -26,9 +26,9 @@ app.use(session({
 var router = require('./router/main')(app, fs);
 */
 
-var makeDrm = require('./makeDrmData');
-var issueCID = require('./CIDIssue');
-var rightsInfo = require('./ContentUsageRightsInfo');
+var makeDrm = require('./logics/makeDrmData');
+var issueCID = require('./logics/CIDIssue');
+var rightsInfo = require('./logics/ContentUsageRightsInfo');
 
 var router = express.Router();
 
