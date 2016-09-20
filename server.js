@@ -15,6 +15,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+var CORS = require('cors')();
+app.use(CORS);
+
 /*
 app.use(session({
     secret: '@#@$MYSIGN#@$#$',
@@ -64,6 +68,7 @@ router.get('/', function(req, res) {
     });
 });
 
+/*
 router.post('/', function(req, res) {
     console.log('req body: ' + req.body);
     res.render('index', {
@@ -71,6 +76,7 @@ router.post('/', function(req, res) {
         makeDrm: makeDrm
     });
 });
+*/
 
 router.get('/sample', function(req, res) {
     res.send('this is a sample');

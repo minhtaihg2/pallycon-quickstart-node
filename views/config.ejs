@@ -1,52 +1,110 @@
 <%
-	var sMessage = 'Input your config data and click Save button.';
+  var sMessage = 'Input your config data and click Save button.';
 
-	// initial values
-	var configData = makeDrm.getConfig();
+  // initial values
+  var configData = makeDrm.getConfig();
 
-	if(data) {
-		//var configString = JSON.stringify(data);
-		//console.log(configString);
+  if(data) {
+    configData = data;
+    makeDrm.writeConfig(configData);
+    sMessage = 'Config data updated.';
+  }
 
-		configData = data;
-	  makeDrm.writeConfig(configData);
-	  sMessage = 'Config data updated.';
-	}
-
-	/*
-	var configData = new Object();
-	configData.SITE_ID = SITE_ID;
-	configData.TEST_USERID = TEST_USERID;
-	configData.AES256_IV = AES256_IV;
-	configData.AUTH_KEY = AUTH_KEY;
-	configData.PACK_KEY = PACK_KEY;
-	*/
+  /*
+  var configData = new Object();
+  configData.SITE_ID = SITE_ID;
+  configData.TEST_USERID = TEST_USERID;
+  configData.AES256_IV = AES256_IV;
+  configData.AUTH_KEY = AUTH_KEY;
+  configData.PACK_KEY = PACK_KEY;
+  */
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>PallyCon Quickstart Config</title>
-<meta charset="utf-8">
+    <title>PallyCon Quickstart Config</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <!-- Add custom CSS here -->
+    <link href="./css/stylish-portfolio.css" rel="stylesheet">
+    <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/jquery-3.1.0.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <style type="text/css">
+    html {
+        min-width: 700px;
+    }
+
+    body {
+        font-family: 'Malgun Gothic';
+    }
+    </style>
 </head>
 
 <body>
-<div class="container">
-	<div class="page-header">
-	<h1>PallyCon Quickstart Configuration</h1>
-	</div>
-	<form method="post">
-		<p>Site ID : <input name="SITE_ID" type="text" size="8" maxlength="16" value="<%= configData.SITE_ID %>"/>
-		<p>Test UserID : <input name="TEST_USERID" type="text" size="16" maxlength="16" value="<%= configData.TEST_USERID %>"/>
-		<p>AES256 IV : <input name="AES256_IV" type="text" size="24" maxlength="24" readonly value="<%= configData.AES256_IV %>"/>
-		<p>AUTH Key : <input name="AUTH_KEY" type="text" size="36" maxlength="36" value="<%= configData.AUTH_KEY %>"/>
-		<p>Packager Key : <input name="PACK_KEY" type="text" size="36" maxlength="36" value="<%= configData.PACK_KEY %>"/>
-		<p><input type="submit" value="Save">
-	</form>
-	<p>
-<h3><label id="message_label">test message</label></h3>
-<script>
-  document.getElementById('message_label').innerHTML = '<%= sMessage %>';
-</script>
-</div>
+    <div id="top" class="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>
+                       PallyCon Quickstart Configuration</h1>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Intro -->
+    <div id="intro" class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-12">
+                    <form method="post">
+                        <h3>Gateway Integration Settings</h3>
+                        <p>Site ID : <input name="SITE_ID" type="text" size="8" maxlength="4" value="<%= configData.SITE_ID %>" />
+                         IV(fixed) : <input name="AES256_IV" type="text" size="24" maxlength="24" readonly value="<%= configData.AES256_IV %>" />
+                        <p>AUTH Key : <input name="AUTH_KEY" type="text" size="36" maxlength="36" value="<%= configData.AUTH_KEY %>" />
+                        <p>Packager Key : <input name="PACK_KEY" type="text" size="36" maxlength="36" value="<%= configData.PACK_KEY %>" />
+                        <h3>Playback Test Settings</h3>
+                        <p>Test UserID : <input name="TEST_USERID" type="text" size="16" maxlength="32" value="<%= configData.TEST_USERID %>" />
+                         ContentID : <input name="TEST_CID" type="text" size="24" maxlength="32" value="<%= configData.TEST_CID %>" />
+                        <p>Stream URL : <input name="TEST_STREAM" type="text" size="64" maxlength="256" value="<%= configData.TEST_STREAM %>" />
+                        <p>License Server(fixed) : <input name="LIC_SERVER" type="text" size="256" maxlength="52" readonly value="<%= configData.LIC_SERVER %>" />
+                        <p><input type="submit" value="Save Settings">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact" class="call-to-action">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h4><label id="message_label">test message</label></h4>
+                    <script>
+                    document.getElementById('message_label').innerHTML = '<%= sMessage %>';
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <p>Copyright &copy; INKAENTWORKS Co.,Ltd.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer -->
 </body>
 </html>

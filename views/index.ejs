@@ -1,17 +1,10 @@
 <%
     // initial values
     var configData = makeDrm.getConfig();
-
-    var Site_ID     = configData.SITE_ID.toString();
-    var User_ID = configData.TEST_USERID.toString();
-    var Content_ID = Site_ID + "cid1234562";    // hard-coded cid
-    var Order_ID = "testoid";                   // hard-coded for test
-
-
     var drmReqData = new Object();
-    drmReqData.user_id = User_ID;
-    drmReqData.cid = Content_ID;
-    drmReqData.oid = Order_ID;
+    drmReqData.user_id = configData.TEST_USERID;
+    drmReqData.cid = configData.TEST_CID;
+    drmReqData.oid = "testoid"; // hard-coded for test
 
     var customData = makeDrm.encrypt(JSON.stringify(drmReqData));
     console.log(customData);
@@ -78,9 +71,9 @@ function play(){
 	var videoCheck = 0;
 	viblast('#player').setup({
 		key: 'N8FjNTQ3NDdhZqZhNGI5NWU5ZTI=',
-		stream: './contents/bbb/stream.mpd',
+		stream: '<%= configData.TEST_STREAM.toString() %>',
 		widevine: {
-			'licensing-server': 'https://tokyo.pallycon.com/ri/licenseManager.do'
+			'licensing-server': '<%= configData.LIC_SERVER.toString() %>'
 		},
 		xhrBeforeSend: function(ev) {
 			// filter out non-drm requests
@@ -88,11 +81,11 @@ function play(){
 			if (ev.method !== "POST") return;
 
 			if (is_chrome_or_firefox) {
-				ev.xhr.setRequestHeader('pallycon-customdata', '<%= "W"+Site_ID %>'+ $("#aesData1").val());
+				ev.xhr.setRequestHeader('pallycon-customdata', '<%= "W"+configData.SITE_ID %>'+ $("#aesData1").val());
 			}
 			else {
 				//alert("not chrome/firefox! is it IE/Edge?");
-				ev.xhr.setRequestHeader('pallycon-customdata', '<%= "P"+Site_ID %>'+ $("#aesData1").val());
+				ev.xhr.setRequestHeader('pallycon-customdata', '<%= "P"+configData.SITE_ID %>'+ $("#aesData1").val());
 			}
 			//console.log('Sending a ', ev.method, 'request to ', ev.url, 'by Viblast instance', ev.target);
 			ev.xhr.addEventListener('load', function() {
@@ -165,16 +158,6 @@ $(document).ready(function(){
                 </div>
             </div>
             <div class="row">
-    <form method="post">
-        <p>Site ID : <input name="SITE_ID" type="text" size="8" maxlength="16" value="<%= configData.SITE_ID %>"/>
-        Test UserID : <input name="TEST_USERID" type="text" size="16" maxlength="16" value="<%= configData.TEST_USERID %>"/>
-        AES256 IV : <input name="AES256_IV" type="text" size="24" maxlength="24" readonly value="<%= configData.AES256_IV %>"/>
-        <p>AUTH Key : <input name="AUTH_KEY" type="text" size="36" maxlength="36" value="<%= configData.AUTH_KEY %>"/>
-        Packager Key : <input name="PACK_KEY" type="text" size="36" maxlength="36" value="<%= configData.PACK_KEY %>"/>
-        <p><input type="submit" value="Apply Settings">
-    </form>
-
-
                 <div class="player_container">
 					<video id="player" controls width="1080"></video>
 					<input type="text" id="text_speed" value="1.0X">

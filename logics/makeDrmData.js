@@ -8,16 +8,18 @@
     var CONFIG_FILE = "./data/config.json";
 
     //const CONTENT_KEY_LENGTH_IN_BYTES = 16;
-    //const COMMUNICATION_KEY_LENGTH_IN_BYTES = 32;
     //const SECRETS_FILE_NAME = "Secrets.json";
 
     // default config json data
     var config = {
-        SITE_ID: "8KAJ",
-        TEST_USERID: "valid-user",
+        SITE_ID: "DEMO",
         AES256_IV: "0123456789abcdef",
-        AUTH_KEY: "yZfN3CNi4t2rnvrqfLEGRGHhNI3oBeQK",
-        PACK_KEY: "JKXBwTFJisxDHkbp5wWY6vOrQaZkqhl7"
+        AUTH_KEY: "s3PWlU5D8oLlFWkCs3PWlU5D8oLlFWkC",
+        PACK_KEY: "",
+        TEST_USERID: "valid-user",
+        TEST_CID: "DEMOtears_of_steel_720p",
+        TEST_STREAM: "https://d28giv01x4pn7o.cloudfront.net/tears_of_steel_720p/stream.mpd",
+        LIC_SERVER: "https://tokyo.pallycon.com/ri/licenseManager.do"
     };
 
     jsonfile.readFile(CONFIG_FILE, function(err, data) {
