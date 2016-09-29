@@ -31,6 +31,7 @@ var router = require('./router/main')(app, fs);
 */
 
 var makeDrm = require('./logics/makeDrmData');
+var packager = require('./logics/packagerIntegration');
 var issueCID = require('./logics/CIDIssue');
 var rightsInfo = require('./logics/ContentUsageRightsInfo');
 
@@ -78,26 +79,20 @@ router.post('/', function(req, res) {
 });
 */
 
-router.get('/sample', function(req, res) {
-    res.send('this is a sample');
-
-    console.log(req.method, req.url);
-    if (req.query.cid && req.query.userid)
-        console.log('cid: ' + req.query.cid + ', userID: ' + req.query.userid);
-});
-
-router.get('/viblast', function(req, res) {
-    res.render('viblast', {
+router.get('/pack', function(req, res) {
+    res.render('pack', {
         data: 0,
-        makeDrm: makeDrm
+        makeDrm: makeDrm,
+        packager: packager
     });
 });
 
-router.post('/viblast', function(req, res) {
+router.post('/pack', function(req, res) {
     console.log('req body: ' + req.body);
-    res.render('viblast', {
+    res.render('pack', {
         data: req.body,
-        makeDrm: makeDrm
+        makeDrm: makeDrm,
+        packager: packager
     });
 });
 

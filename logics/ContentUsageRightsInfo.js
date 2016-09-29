@@ -259,14 +259,14 @@
                 // User ID 체크 로직 ('valid-user'로 하드코딩..)
                 if (sUserID == "valid-user") {
                     ERROR_CODE = "0000";
-                    // [BM 적용 전] CONFIG.php의 정의된 값
+                    // 테스트용 기본 라이선스 데이터 (무제한 라이선스)
                     sLIMIT = "N";
                     sPD_START = "";
                     sPD_END = "";
                     sPD_COUNT = 0;
                 } else {
                     ERROR_CODE = "4321";
-                    MESSAGE = "Not a valid user ID";
+                    MESSAGE = "Not a valid user ID: " + sUserID;
                     if (isTest == 1) console.log("[ERROR]: " + ERROR_CODE + "\n[MESSAGE]: " + MESSAGE);
                 }
             }

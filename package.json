@@ -1,8 +1,14 @@
 {
   "name": "pallycon-quickstart-node",
   "version": "1.0.0",
+  "author": "Daniel Kim <daniel@inka.co.kr>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inka-pallycon/pallycon-quickstart-node"
+  },
   "main": "server.js",
   "scripts": {
+    "preinstall": "chmod 744 *.sh && mkdir data && mkdir public/contents",
     "start": "node server"
   },
   "dependencies": {
@@ -13,5 +19,6 @@
     "express-session": "~1.13.0",
     "jsonfile": "^2.3.1",
     "xml2js": "^0.4.17"
-  }
+  },
+  "license": "MIT"
 }
