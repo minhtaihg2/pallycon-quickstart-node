@@ -259,7 +259,7 @@
                 // User ID 체크 로직 ('valid-user'로 하드코딩..)
                 if (sUserID == "valid-user") {
                     ERROR_CODE = "0000";
-                    // 테스트용 기본 라이선스 데이터 (무제한 라이선스)
+                    // 테스트용 기본 라이선스 데이터 (Unlimited license)
                     sLIMIT = "N";
                     sPD_START = "";
                     sPD_END = "";
