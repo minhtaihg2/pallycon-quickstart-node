@@ -14,7 +14,7 @@
     var config = {
         SITE_ID: "DEMO",
         AES256_IV: "0123456789abcdef",
-        AUTH_KEY: "s3PWlU5D8oLlFWkCs3PWlU5D8oLlFWkC",
+        SITE_KEY: "s3PWlU5D8oLlFWkCs3PWlU5D8oLlFWkC",
         PACK_KEY: "",
         TEST_USERID: "valid-user",
         TEST_CID: "DEMOtears_of_steel_720p",
@@ -44,7 +44,7 @@
             if (!data)
                 return 'fail';
 
-            var cipher = crypto.createCipheriv('aes-256-cbc', config.AUTH_KEY, config.AES256_IV);
+            var cipher = crypto.createCipheriv('aes-256-cbc', config.SITE_KEY, config.AES256_IV);
             //cipher.setAutoPadding(false);
             var result = cipher.update(data, "utf8", "base64");
             result += cipher.final("base64");
@@ -56,7 +56,7 @@
             if (!data)
                 return 'fail';
 
-            var decipher = crypto.createDecipheriv('aes-256-cbc', config.AUTH_KEY, config.AES256_IV);
+            var decipher = crypto.createDecipheriv('aes-256-cbc', config.SITE_KEY, config.AES256_IV);
             //cipher.setAutoPadding(false);
             var result = decipher.update(data, "base64", "utf8");
             result += decipher.final("utf8");

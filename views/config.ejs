@@ -15,7 +15,7 @@
   configData.SITE_ID = SITE_ID;
   configData.TEST_USERID = TEST_USERID;
   configData.AES256_IV = AES256_IV;
-  configData.AUTH_KEY = AUTH_KEY;
+  configData.SITE_KEY = SITE_KEY;
   configData.PACK_KEY = PACK_KEY;
   */
 %>
@@ -70,7 +70,7 @@
                         <h3>Gateway Integration Settings</h3>
                         <p>Site ID : <input name="SITE_ID" type="text" size="8" maxlength="4" value="<%= configData.SITE_ID %>" />
                          IV(fixed) : <input name="AES256_IV" type="text" size="24" maxlength="24" readonly value="<%= configData.AES256_IV %>" />
-                        <p>AUTH Key : <input name="AUTH_KEY" type="text" size="36" maxlength="36" value="<%= configData.AUTH_KEY %>" />
+                        <p>Site Key : <input name="SITE_KEY" type="text" size="36" maxlength="36" value="<%= configData.SITE_KEY %>" />
                         <p>Packager Key : <input name="PACK_KEY" type="text" size="36" maxlength="36" value="<%= configData.PACK_KEY %>" />
                         <h3>Playback Test Settings</h3>
                         <p>Test UserID : <input name="TEST_USERID" type="text" size="16" maxlength="32" value="<%= configData.TEST_USERID %>" />
