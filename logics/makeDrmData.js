@@ -14,12 +14,13 @@
     var config = {
         SITE_ID: "DEMO",
         AES256_IV: "0123456789abcdef",
-        SITE_KEY: "s3PWlU5D8oLlFWkCs3PWlU5D8oLlFWkC",
+        SITE_KEY: "",
         PACK_KEY: "",
         TEST_USERID: "valid-user",
         TEST_CID: "DEMOtears_of_steel_720p",
         TEST_STREAM: "https://d28giv01x4pn7o.cloudfront.net/tears_of_steel_720p/stream.mpd",
-        LIC_SERVER: "https://tokyo.pallycon.com/ri/licenseManager.do"
+        LIC_SERVER: "https://tokyo.pallycon.com/ri/licenseManager.do",
+        API_TYPE: "XML"
     };
 
     jsonfile.readFile(CONFIG_FILE, function(err, data) {
@@ -43,6 +44,10 @@
             console.log('encrypt data: ' + data);
             if (!data)
                 return 'fail';
+
+            // default customdata for DEMO playback
+            if (config.SITE_ID == 'DEMO' && !config.SITE_KEY)
+                return 'cceAN+NNUg/sNW3EPc1mWV4yoPiPEnhI0Ue83L20peFvUyCXapArdCkqmjgsRW8c6b6P+U+1fBqUuhBOIza14SaXYKv04ZfLhYupEBKpGis=';
 
             var cipher = crypto.createCipheriv('aes-256-cbc', config.SITE_KEY, config.AES256_IV);
             //cipher.setAutoPadding(false);
@@ -75,6 +80,10 @@
                 else
                     console.log('[writeConfig] ' + JSON.stringify(config));
             });
+        },
+        "getAPIType": function getAPIType() {
+            console.log('[getAPIType] ' + config.API_TYPE);
+            return config.API_TYPE;
         }
     };
 })();

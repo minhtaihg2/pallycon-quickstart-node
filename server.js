@@ -52,7 +52,6 @@ router.post('/ContentUsageRightsInfo', function(req, res) {
     res.send(rightsInfo.makeRes(req.body.data));
 });
 
-
 // apply the routes to our application
 app.use('/', router);
 
