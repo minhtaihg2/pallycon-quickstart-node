@@ -152,7 +152,7 @@
                         }
                     });
                 } else {    // JSON type
-                    sJsonResult = sDecrypted;
+                    sJsonResult = JSON.parse(sDecrypted);
                     sNonce = sJsonResult.nonce;
                 }
             }
@@ -208,8 +208,8 @@
                     sFilePath = sJsonResult.RES.FILEPATH.toString(); // 업체에서 Content ID를 생성하는데 활용할 수 있는 원본파일 경로 입니다.
                     sFileName = sJsonResult.RES.FILENAME.toString(); // 업체에서 Content ID를 생성하는데 활용할 수 있는 원본파일명
                 } else {    // JSON type
-                    sFilePath = sJsonResult.file_path.toString(); // 업체에서 Content ID를 생성하는데 활용할 수 있는 원본파일 경로 입니다.
-                    sFileName = sJsonResult.file_name.toString(); // 업체에서 Content ID를 생성하는데 활용할 수 있는 원본파일명
+                    sFilePath = sJsonResult.file_path; // 업체에서 Content ID를 생성하는데 활용할 수 있는 원본파일 경로 입니다.
+                    sFileName = sJsonResult.file_name; // 업체에서 Content ID를 생성하는데 활용할 수 있는 원본파일명
                 }
 
                 /*

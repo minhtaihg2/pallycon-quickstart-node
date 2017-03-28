@@ -101,9 +101,7 @@
             else {
                 ERROR_CODE = "2201";
                 MESSAGE = "NO DATA";
-                if (isTest == 1)
-                    console.log("[ERROR]: " + ERROR_CODE + "\n[MESSAGE]: " + MESSAGE);
-
+                console.log("[ERROR]: " + ERROR_CODE + "\n[MESSAGE]: " + MESSAGE);
             }
             /* = -------------------------------------------------------------------------- = */
             /* =   2. REQUEST DATA 파싱 END / End of parsing request data          = */
@@ -162,7 +160,7 @@
                         }
                     });
                 } else {    // JSON type
-                    sJsonResult = sDecrypted;
+                    sJsonResult = JSON.parse(sDecrypted);
                     sNonce = sJsonResult.nonce;
                 }
             }
@@ -228,12 +226,12 @@
                     sOID = sJsonResult.RES.OID.toString(); // 클라이언트에서 추출한 콘텐츠 구매 정보 (Order ID)
 
                 } else {    // JSON type
-                    sUserID = sJsonResult.user_id.toString(); // 클라이언트에서 추출한 사용자 아이디
-                    sCID = sJsonResult.cid.toString(); // 클라이언트에서 추출한 콘텐츠의 Content ID
-                    sDeviceDID = sJsonResult.device_id.toString(); // 클라이언트에서 추출한 기기 아이디
-                    sDeviceType = sJsonResult.device_type.toString(); // 클라이언트 기기 유형
-                    sOID = sJsonResult.oid.toString(); // 클라이언트에서 추출한 콘텐츠 구매 정보 (Order ID)
-                    sDrmType = sJsonResult.drm_type.toString();
+                    sUserID = sJsonResult.user_id; // 클라이언트에서 추출한 사용자 아이디
+                    sCID = sJsonResult.cid; // 클라이언트에서 추출한 콘텐츠의 Content ID
+                    sDeviceID = sJsonResult.device_id; // 클라이언트에서 추출한 기기 아이디
+                    sDeviceType = sJsonResult.device_type; // 클라이언트 기기 유형
+                    sOID = sJsonResult.oid; // 클라이언트에서 추출한 콘텐츠 구매 정보 (Order ID)
+                    sDrmType = sJsonResult.drm_type;
                 }
 
                 // User ID 체크 로직 ('valid-user'로 하드코딩..)
@@ -288,7 +286,7 @@
             }
             sResponse += "<NONCE>" + sNonce + "</NONCE>";
             sResponse += "</RES>";
-            if (isTest == 1) console.log("[Result XML]: " + sResponse);
+            console.log("[Result XML]: " + sResponse);
             /* = -------------------------------------------------------------------------- = */
             /* =   6. 응답 데이타 생성 [XML] END / End of response data generation [XML]      = */
             /* ============================================================================== */
