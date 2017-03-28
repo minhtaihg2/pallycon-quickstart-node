@@ -4,7 +4,7 @@ wget "http://sample.pallycon.com/quickstart/PallyConPackager_ubuntu.zip"
 unzip PallyConPackager_ubuntu.zip
 wget  "http://sample.pallycon.com/quickstart/Bento4.zip"
 unzip Bento4.zip
-chmod 744 PallyConPackager && chmod 744 ./Bento4/*.*
+chmod 744 PallyConPackager && chmod 744 -R Bento4
 
 echo "Downloading sample video from pallycon server"
 wget "http://sample.pallycon.com/quickstart/sintel-trailer-480p.mp4"
