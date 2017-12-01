@@ -14,7 +14,7 @@
   "dependencies": {
     "body-parser": "~1.14.2",
     "cors": "^2.8.1",
-    "ejs": "~2.4.1",
+    "ejs": "~2.5.5",
     "express": "~4.13.1",
     "express-session": "~1.13.0",
     "jsonfile": "^2.3.1",
