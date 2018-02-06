@@ -4,7 +4,7 @@
     var drmReqData = new Object();
     drmReqData.user_id = configData.TEST_USERID;
     drmReqData.cid = configData.TEST_CID;
-    drmReqData.oid = "testoid"; // hard-coded for test
+    // drmReqData.oid = "testoid"; // hard-coded for test
 
     var customData = makeDrm.encrypt(JSON.stringify(drmReqData));
     console.log(customData);
