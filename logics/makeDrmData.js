@@ -20,7 +20,7 @@
         TEST_CID: "DEMOtears_of_steel_720p",
         TEST_OID: "",
         TEST_STREAM: "https://d28giv01x4pn7o.cloudfront.net/tears_of_steel_720p/stream.mpd",
-        LIC_SERVER: "https://tokyo.pallycon.com/ri/licenseManager.do",
+        LIC_SERVER: "https://license.pallycon.com/ri/licenseManager.do",
         API_TYPE: "JSON"
     };
 
